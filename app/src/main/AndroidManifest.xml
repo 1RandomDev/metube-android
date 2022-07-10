@@ -7,7 +7,6 @@
 
     <application
         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/metube"
@@ -15,7 +14,13 @@
         android:roundIcon="@mipmap/metube_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MeTube"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MeTube.NoActionBar"
+            android:label="@string/settings_title" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

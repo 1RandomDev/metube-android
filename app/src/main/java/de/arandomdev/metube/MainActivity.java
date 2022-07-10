@@ -1,6 +1,8 @@
 package de.arandomdev.metube;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,7 +10,9 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -46,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
         urlInput = findViewById(R.id.urlText);
         qualityMenu = findViewById(R.id.qualityMenu);
         formatMenu = findViewById(R.id.formatMenu);
-        downloadButton = findViewById(R.id.downloadButton);
+        downloadButton = findViewById(R.id.saveButton);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         urlInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -95,9 +101,26 @@ public class MainActivity extends AppCompatActivity {
                 urlInput.setText(url);
                 if(settings.getBoolean("startAfterShare", false)) startDownload();
             } else {
-                Toast.makeText(this, "Shared url invalid", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Shared url invalid", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.menu_action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void populateQualityMenu(String format, String selected) {
@@ -116,9 +139,9 @@ public class MainActivity extends AppCompatActivity {
             Looper.prepare();
             boolean success = apiClient.sendToMetube(settings.getString("metubeUrl", null), videoUrl, format, quality);
             if(success) {
-                Toast.makeText(this, "Download started...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Download started...", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Error while downloading video", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Error while downloading video", Toast.LENGTH_LONG).show();
             }
         }).start();
     }

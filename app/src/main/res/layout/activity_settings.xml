@@ -31,54 +31,24 @@
             android:layout_margin="20dp">
 
             <EditText
-                android:id="@+id/urlText"
+                android:id="@+id/baseUrlText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:ems="10"
-                android:hint="@string/download_video_url"
+                android:hint="@string/settings_base_url"
                 android:importantForAutofill="no"
                 android:inputType="textUri"
                 android:singleLine="true"
                 tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/startAfterShareBox"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="20dp"
-            android:hint="@string/download_video_format">
-
-            <AutoCompleteTextView
-                android:id="@+id/formatMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:importantForAutofill="no"
-                android:inputType="none"
-                android:textColorHint="#616161" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="20dp"
-            android:hint="@string/download_video_quality">
-
-            <AutoCompleteTextView
-                android:id="@+id/qualityMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:importantForAutofill="no"
-                android:inputType="none"
-                android:textAppearance="?attr/textAppearanceSubtitle1"
-                android:textColorHint="#616161" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginStart="15dp"
+            android:text="@string/settings_start_after_share" />
 
         <Button
             android:id="@+id/saveButton"
@@ -87,8 +57,7 @@
             android:layout_gravity="center_vertical|center_horizontal"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="20dp"
-            android:enabled="false"
-            android:text="@string/download_video_button" />
+            android:text="@string/settings_save_button" />
 
     </LinearLayout>
 </ScrollView>
