@@ -80,32 +80,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:id="@+id/errorMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="20dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:visibility="visible">
-
-            <Space
-                android:layout_width="10dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0" />
-
-            <TextView
-                android:id="@+id/missingAppsText"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:text="@string/download_video_error"
-                android:textAlignment="center" />
-        </LinearLayout>
-
         <Button
             android:id="@+id/downloadButton"
             android:layout_width="match_parent"
@@ -113,6 +87,7 @@
             android:layout_gravity="center_vertical|center_horizontal"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="20dp"
+            android:enabled="false"
             android:text="@string/download_video_button" />
 
     </LinearLayout>

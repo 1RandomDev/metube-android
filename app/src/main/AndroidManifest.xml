@@ -3,8 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="de.arandomdev.metube">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/metube"
@@ -16,8 +19,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.MeTube.NoActionBar"
-            android:label="@string/activity_main_name">
+            android:theme="@style/Theme.MeTube.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
