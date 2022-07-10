@@ -36,14 +36,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        settings = getSharedPreferences("settings", MODE_PRIVATE);
+        SharedPreferences.Editor settingsEditor = settings.edit();
+
+        if(settings.getString("metubeUrl", "").trim().isEmpty()) {
+            openSettings();
+        }
+
         formats = new String[] {"MP4", "MP3", "Thumbnail"};
         qualities = new HashMap<>();
         qualities.put("MP4", new String[] {"Best", "1440p", "1080p", "720p", "480p"});
         qualities.put("MP3", new String[] {"Best", "320 kbps", "192 kbps", "128 kbps"});
         qualities.put("Thumbnail", new String[] {"Best"});
-
-        settings = getSharedPreferences("settings", MODE_PRIVATE);
-        SharedPreferences.Editor settingsEditor = settings.edit();
 
         apiClient = new APIClient();
 
@@ -117,10 +122,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.menu_action_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
+            openSettings();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openSettings() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 
     private void populateQualityMenu(String format, String selected) {
