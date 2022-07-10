@@ -5,8 +5,9 @@ Android app that lets you download videos from YouTube and many other sites via 
 ## Screenshots
 
 <p float="left">
-    <img width="250" src="/screenshots/screen-download.png"/>
-    <img width=250 src="/screenshots/screen-settings.png">
+    <img width="250" src="/screenshots/screen-download-light.png" />
+    <img width="250" src="/screenshots/screen-download.png" />
+    <img width="250" src="/screenshots/screen-settings.png" />
 </p>
 
 ## Features
