@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MeTube</string>
+    <string name="activity_main_name">Download with MeTube</string>
+    <string name="download_video_url">URL</string>
+    <string name="download_video_format">Format</string>
+    <string name="download_video_quality">Quality</string>
+    <string name="download_video_error">An error occurred! Please check settings.</string>
+    <string name="download_video_button">DOWNLOAD</string>
 </resources>
