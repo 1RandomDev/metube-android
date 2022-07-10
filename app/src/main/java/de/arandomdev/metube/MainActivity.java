@@ -31,15 +31,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Intent intent = getIntent();
-        if(Intent.ACTION_SEND.equals(intent.getAction())) {
-            Log.d("MeTube", "Shared: "+intent.getStringExtra(Intent.EXTRA_TEXT));
-        }
 
         formats = new String[] {"MP4", "MP3", "Thumbnail"};
         qualities = new HashMap<>();
@@ -95,6 +86,18 @@ public class MainActivity extends AppCompatActivity {
         populateQualityMenu(savedFormat, savedQuality);
 
         downloadButton.setOnClickListener(view -> startDownload());
+
+        Intent intent = getIntent();
+        if(Intent.ACTION_SEND.equals(intent.getAction())) {
+            String url = intent.getStringExtra(Intent.EXTRA_TEXT);
+
+            if(url.startsWith("http://") || url.startsWith("https://")) {
+                urlInput.setText(url);
+                if(settings.getBoolean("startAfterShare", false)) startDownload();
+            } else {
+                Toast.makeText(this, "Shared url invalid", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void populateQualityMenu(String format, String selected) {
