@@ -146,11 +146,11 @@ public class MainActivity extends AppCompatActivity {
         urlInput.setText("");
         new Thread(() -> {
             Looper.prepare();
-            boolean success = apiClient.sendToMetube(settings.getString("metubeUrl", null), videoUrl, format, quality);
-            if(success) {
+            APIClient.APIResult res = apiClient.sendToMetube(settings.getString("metubeUrl", null), videoUrl, format, quality);
+            if(res.success()) {
                 Toast.makeText(this, "Download started...", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Error while downloading video", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, res.message(), Toast.LENGTH_LONG).show();
             }
         }).start();
     }
