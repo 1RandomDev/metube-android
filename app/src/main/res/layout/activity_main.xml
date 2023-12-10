@@ -39,6 +39,7 @@
                 android:hint="@string/download_video_url"
                 android:importantForAutofill="no"
                 android:inputType="textUri"
+                android:scrollbarThumbVertical="@null"
                 android:singleLine="true"
                 tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
