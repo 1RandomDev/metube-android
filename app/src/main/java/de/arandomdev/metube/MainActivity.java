@@ -146,7 +146,11 @@ public class MainActivity extends AppCompatActivity {
         urlInput.setText("");
         new Thread(() -> {
             Looper.prepare();
-            APIClient.APIResult res = apiClient.sendToMetube(settings.getString("metubeUrl", null), videoUrl, format, quality);
+            String username = settings.getString("basicAuthUsername", null),
+                   password = settings.getString("basicAuthPassword", null),
+                   url = settings.getString("metubeUrl", null);
+
+            APIClient.APIResult res = apiClient.sendToMetube(url, username, password, videoUrl, format, quality);
             if(res.success()) {
                 Toast.makeText(this, "Download started...", Toast.LENGTH_LONG).show();
             } else {

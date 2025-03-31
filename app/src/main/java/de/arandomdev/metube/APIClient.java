@@ -1,9 +1,9 @@
 package de.arandomdev.metube;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+
+import java.util.Base64;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -22,16 +22,19 @@ public class APIClient {
 
     }
 
-    public APIResult sendToMetube(String baseUrl, String videoUrl, String format, String quality) {
+    public APIResult sendToMetube(String baseUrl, String username, String password, String videoUrl, String format, String quality) {
         try {
             RequestBody body = RequestBody.create(
                     "{\"quality\":\""+quality+"\",\"format\":\""+format+"\",\"auto_start\":true,\"url\":\""+videoUrl+"\"}",
                     MediaType.parse("application/json; charset=utf-8"));
 
-            Request request = new Request.Builder()
+            Request.Builder requestBuilder = new Request.Builder()
                     .url(baseUrl+"/add")
-                    .post(body)
-                    .build();
+                    .post(body);
+            if(username != null && password != null)
+                requestBuilder = requestBuilder.header("Authorization", "Basic "+Base64.getEncoder().encodeToString((username+":"+password).getBytes()));
+            Request request = requestBuilder.build();
+
             Response response = client.newCall(request).execute();
             String responseBody = response.body().string();
             if(response.code() == 200) {
@@ -44,8 +47,9 @@ public class APIClient {
                         return new APIResult(false, "Error downloading video: "+message);
                     }
                 }
+            } else {
+                return new APIResult(false, "Error downloading video: Bad status code "+response.code());
             }
-            Log.e("APIClient", "Download failed: "+responseBody);
         } catch (Exception e) {
             e.printStackTrace();
             return new APIResult(false, "Error downloading video: "+e.getMessage());

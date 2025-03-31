@@ -7,7 +7,12 @@
     <string name="download_video_error">An error occurred! Please check settings.</string>
     <string name="download_video_button">DOWNLOAD</string>
     <string name="settings_title">Settings</string>
+    <string name="settings_label_server">Server Connection</string>
+    <string name="settings_label_behaviour">Behaviour</string>
     <string name="settings_base_url">MeTube URL</string>
+    <string name="settings_enable_basic_auth">Requires Basic Authentication</string>
+    <string name="settings_auth_username">Username</string>
+    <string name="settings_auth_password">Password</string>
     <string name="settings_save_button">Save</string>
     <string name="settings_start_after_share">Start download after share</string>
 </resources>
